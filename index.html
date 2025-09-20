@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pemesanan Katering Santri Baru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-8">
+    <div class="max-w-2xl mx-auto px-4">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <div class="text-center">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZLYhhcn24Ldg-Oi9fPz47a-r_IVHV2tbr1VhFXs424_MkjJfgrSIZyVmddxmyZ5PaUAT4gxPPXe_uH5DziW2rsJnIlTycyAAYrMrAz588ytSsbqyHfDVI3xvlXwpQfCaZqmNcFnecApQIapC2jGVcDQgDp01G_8fPvVV397vxuOU_Ge8aDKHupI4Yo1I/s500/Masakin%20aja.png" 
+                     alt="Logo Masakin Aja" 
+                     class="mx-auto mb-4 h-20 w-auto"
+                     onerror="this.src=''; this.alt='Logo Masakin Aja'; this.style.display='none';">
+                <h1 class="text-2xl font-bold text-gray-800 mb-2">Formulir Pemesanan Katering</h1>
+                <h2 class="text-lg font-semibold text-purple-600 mb-1">Santri Baru Kuttab Al Fatih Gedebage</h2>
+                <p class="text-gray-600">Tahun 2025-2026</p>
+                <div class="mt-4 p-3 bg-purple-50 rounded-lg">
+                    <p class="text-sm text-purple-700 font-medium">Penyelenggara: Masakin Aja</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <form id="cateringForm" class="space-y-6">
+                <!-- Syarat dan Ketentuan -->
+                <div class="bg-purple-50 border border-purple-200 rounded-xl p-6">
+                    <label class="flex items-start space-x-3 cursor-pointer">
+                        <input type="checkbox" id="syaratKetentuan" name="syaratKetentuan" required
+                               class="w-5 h-5 text-purple-600 border-2 border-gray-300 rounded focus:ring-purple-500 focus:ring-2 mt-0.5">
+                        <span class="text-sm font-medium text-gray-800">
+                            Saya Menyetujui <a href="#" id="syaratKetentuanLink" class="text-blue-600 hover:text-blue-800 underline">Syarat dan Ketentuan Catering Santri</a> <span class="text-red-500">*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Nama Santri -->
+                <div class="relative">
+                    <label for="namaSantri" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Nama Santri <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="namaSantri" name="namaSantri" required autocomplete="off"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                           placeholder="Ketik atau pilih nama santri">
+                    <div id="santriDropdown" class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto hidden">
+                        <!-- Dropdown options akan ditambahkan di sini -->
+                    </div>
+                </div>
+
+                <!-- Nama Ayah -->
+                <div>
+                    <label for="namaAyah" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Nama Ayah <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="namaAyah" name="namaAyah" required readonly
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+                           placeholder="Akan terisi otomatis setelah memilih santri">
+                </div>
+
+                <!-- Nomor WA -->
+                <div>
+                    <label for="nomorWA" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Nomor WhatsApp Orang Tua <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="nomorWA" name="nomorWA" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                           placeholder="Contoh: 081234567890"
+                           pattern="[0-9]+"
+                           title="Hanya angka, tanpa spasi">
+                    <p class="text-xs text-gray-500 mt-1">*Hanya angka, tanpa spasi</p>
+                </div>
+
+                <!-- Level/Kelas -->
+                <div>
+                    <label for="levelKelas" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Level / Kelas <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="levelKelas" name="levelKelas" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                           placeholder="Masukkan level/kelas santri">
+                </div>
+
+                <!-- Alergi -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">
+                        Apakah anak Anda memiliki alergi? <span class="text-red-500">*</span>
+                    </label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center">
+                            <input type="radio" name="alergi" value="tidak" required
+                                   class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                            <span class="ml-2 text-gray-700">Tidak</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="alergi" value="ya" required
+                                   class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
+                            <span class="ml-2 text-gray-700">Ya</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Jenis Alergi (Hidden by default) -->
+                <div id="jenisAlergiContainer" class="hidden">
+                    <label for="jenisAlergi" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Sebutkan Jenis Alergi Makanannya <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="jenisAlergi" name="jenisAlergi" rows="3"
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                              placeholder="Contoh: Kacang, seafood, telur, dll."></textarea>
+                </div>
+
+                <!-- Jumlah Hari -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">
+                        Jumlah Hari Pesanan Catering <span class="text-red-500">*</span>
+                    </label>
+                    <div class="flex items-center space-x-4">
+                        <button type="button" id="minusBtn" 
+                                class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center">
+                            −
+                        </button>
+                        <div class="flex-1 text-center">
+                            <input type="number" id="jumlahHari" name="jumlahHari" value="1" min="1" max="30" readonly
+                                   class="w-20 text-center text-2xl font-bold py-2 border border-gray-300 rounded-lg bg-gray-50">
+                            <p class="text-sm text-gray-500 mt-1">hari</p>
+                        </div>
+                        <button type="button" id="plusBtn"
+                                class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Total Pembayaran -->
+                <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-200">
+                    <div class="text-center">
+                        <p class="text-lg font-semibold text-gray-700 mb-2">Total yang Harus Dibayar</p>
+                        <p id="totalHarga" class="text-3xl font-bold text-purple-600">Rp 13.500</p>
+                        <p class="text-sm text-gray-500 mt-1">Harga per hari: Rp 13.500</p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg">
+                    Kirim Pesanan
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="successMessage" class="hidden bg-green-50 border border-green-200 rounded-xl p-6 mt-6">
+            <div class="text-center">
+                <div class="text-green-600 text-4xl mb-3">✓</div>
+                <h3 class="text-lg font-semibold text-green-800 mb-2">Pesanan Berhasil Dikirim!</h3>
+                <p class="text-green-700 mb-4">Terima kasih atas pesanan Anda. Hubungi Tim Masakin Aja Jika Ada Pertanyaan.</p>
+                <button id="isiKembaliBtn" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg">
+                    📝 Isi Kembali Formulir
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Konfirmasi Pesanan -->
+        <div id="konfirmasiModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+                <div class="p-6">
+                    <div class="text-center mb-6">
+                        <div class="text-purple-600 text-4xl mb-3">📋</div>
+                        <h2 class="text-2xl font-bold text-gray-800">Konfirmasi Pesanan</h2>
+                        <p class="text-gray-600 text-sm mt-2">Mohon periksa kembali detail pesanan Anda</p>
+                        <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <p class="text-sm text-blue-700 font-medium">
+                                ⚠️ Formulir akan dilanjutkan ke Google Form<br>
+                                Jangan lupa untuk klik 'Kirim' pada Google Form!
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">Nama Santri:</span>
+                            </div>
+                            <p id="konfirmasiNamaSantri" class="font-semibold text-gray-800"></p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-gray-600">Jumlah Hari:</span>
+                                <span id="konfirmasiJumlahHari" class="font-bold text-purple-600"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border border-purple-200">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-gray-700">Total Pembayaran:</span>
+                                <span id="konfirmasiTotal" class="font-bold text-xl text-purple-600"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-3">
+                        <button id="batalKonfirmasi" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-4 rounded-xl transition-colors duration-200">
+                            Batal
+                        </button>
+                        <button id="lanjutkanPesanan" class="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all duration-200">
+                            Lanjutkan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Syarat dan Ketentuan -->
+        <div id="syaratModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Syarat dan Ketentuan Catering Santri</h2>
+                        <button id="closeSyaratModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                            ×
+                        </button>
+                    </div>
+                    <div class="space-y-4 text-gray-700">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-purple-600 font-bold text-lg">1.</span>
+                            <p class="text-sm leading-relaxed">
+                                Pembatalan katering (karena tidak hadir ke kuttab atau ananda sedang shaum) hanya dapat dilakukan paling lambat pukul 05.00 WIB pada hari H dengan menghubungi admin MASAKINAJA secara langsung melalui chat. Dana yang telah dibayarkan dapat dikembalikan (refund) atau dijadikan deposit untuk pemesanan berikutnya.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-purple-600 font-bold text-lg">2.</span>
+                            <p class="text-sm leading-relaxed">
+                                Santri yang tidak hadir ke Kuttab, dan Wali Santri tidak menginformasikan pembatalan kepada admin (atau membatalkan di luar batas waktu yang telah ditentukan), maka jatah makannya akan dialihkan untuk dimanfaatkan oleh pihak Kuttab. Mohon maaf, dalam kondisi ini tidak ada pengembalian dana (refund).
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-purple-600 font-bold text-lg">3.</span>
+                            <p class="text-sm leading-relaxed">
+                                Bagi santri yang meminjam box nasi MasakinAja, mohon segera mengembalikannya ke Dapur Al-Fatih (DAF), mengingat jumlah box yang tersedia sangat terbatas.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-purple-600 font-bold text-lg">4.</span>
+                            <p class="text-sm leading-relaxed">
+                                Pembayaran dilakukan bersamaan dengan pengisian Google Form, disertai dengan unggahan bukti transfer pada saat submit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button id="tutupSyaratModal" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl transition-colors duration-200">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data santri dan ayah
+        const dataSantri = {
+            'Abdullah Bin Fachrial Mar\'ie': 'Fachrial Riza',
+            'Abraham Syuja Kramadibrata': 'Tri Widi Ganuwiara',
+            'Afiqa Maryam': 'Adi Saeful Hamdi',
+            'Aisha Naia Ash Shaliha': 'Fakhri Nur Ahmad',
+            'Al-Ghumaisha Nazafarin Azmya': 'Dian Permana',
+            'Alhazen Nawyan': 'Saiful Anwar',
+            'Alifah Aisha Yasmin': 'Eka Fitriyadi',
+            'Aliyah Malik Auliya Rahman': 'Syaeful Rochman',
+            'Almira Ghaziya Rahma': 'Yogi Pratama',
+            'Alwi Abdul Kariim': 'Khazani Ilman',
+            'Arfa Abidah Qurrota\'Aini': 'Anto',
+            'Arrayah Arham Atqiya': 'Aufa Arham Khaeruddin',
+            'Asiyah Ahsanu Amala': 'Andi Sulistyo Nugroho',
+            'Asiyah Shabrina Candradimuka': 'Wahid Lalang Buana',
+            'Ayana Sofya Shabira': 'Ujang Yandri',
+            'Azzam Athazaky Al Hafidz': 'Sopian Gandhi',
+            'Bakr Ash Shiddiq Rachmat': 'Sidiq Purnama Rachmat',
+            'Elfath Nuswantara': 'Ahmad Kemaludin',
+            'Emir Syafiq Elmultazim': 'Sahlan Muhammad Faqih',
+            'Fatima Nurul Jannah': 'Arif Budiyono',
+            'Fatimah Ar Radhiyah': 'Alvin Ali Efendi',
+            'Fatimah Qonita Rahmah': 'Ihsan Ali Muharom',
+            'Ghazzal Lucky Thabrani': 'Lucky Yordiansyah',
+            'Habibi Zayan Malik Al Mumtaz': 'Malik Abdillah Ibnul Hakim',
+            'Hafiz Alkhairi Purnama': 'Ridwan Purnama',
+            'Hafizh Zayn Al Kahfi': 'Henrik',
+            'Hamizan Afkari Ar-Rayyan': 'Gema Akbaruhzian',
+            'Hamzah Yusuf Riksa': 'Yosep Wijaya Riksa',
+            'Hana Ainunnisa Zaini': 'Mohammad Zaini Dahlan',
+            'Hanna Ayra Nourazmina': 'Adan Rahman Sarsono',
+            'Hasya Maryam Mahdiya': 'Beni Dahlan',
+            'Hayya Atqia Tasnim': 'Muhayat',
+            'Hilya Mafaza Eidelweis': 'E Gunawan',
+            'Hudzaifah Rijalul Haq': 'Faizal Firmansyah',
+            'Iltizam Irsyadul Haq': 'Mochammad Ridwan',
+            'Isaac Abdul Mateen': 'Irvan Amirulloh',
+            'Ja\'far Abdurrahman Hakiim': 'Taufiiqul Hakiim Raharjo',
+            'Khalid Arfan Setiawan': 'Irfan Rachmat Setiawan',
+            'Khodijah Hanaan Muthmainnah': 'Irman Abdul Rohman',
+            'Lashira Khaulah Aziza': 'Muhammad Abdul Azis',
+            'Maryam Adiba Suherman': 'Herman Bambang Suherman',
+            'Maryam Ahsanul Karimah': 'Dinan Andiwijayakusuma',
+            'Misya Hauna Al-Fayyadh': 'Ujang Sopian',
+            'Muhamad Al Fatih Rusmana': 'Andri Rusmana',
+            'Muhammad Alfatih Arsyad': 'Alvin Ali Efendi',
+            'Muhammad Athazaky Sulur': 'Acep Rahman Surur',
+            'Muhammad Hisyam Abdillah Nugraha': 'Mochammad Hilvan Nugraha',
+            'Muhammad Khobab Aly Atsaqil': 'Nurdin Hayat',
+            'Muhammad Qiyas Fadhil Abyan': 'Awan Sudarwan',
+            'Muhammad Sea Al Auvi': 'Pipin Pramudiana',
+            'Muhammad Zaid Al Fatih': 'Junet Haryanto',
+            'Mujaddid Argi Mufassir Al-Furqan': 'Yogi Cahya Nugraha',
+            'Mushlih Abbad Afandi': 'Mashuri Afandi',
+            'Nadheera Rayna Zahirah': 'Muhammad Dawud',
+            'Nailah Aya Sofya': 'Muslimin Amin',
+            'Omar Al Farouq': 'Ahmad Ardan',
+            'Ozil Adn Kabeer': 'Yudi Supriadi',
+            'Ranu Askar Firdaus': 'Fajar Firdaus',
+            'Rayyan Khair Rabbani': 'Robi Afrizan Saputra',
+            'Rumaishah Haamidah Firdaus': 'Fajar Firdaus',
+            'Saad Abdillah Adn': 'Sandi Ahadian',
+            'Sayyid Ribathus Syam': 'Iqbal Santosa',
+            'Shajea Hayfa Zahira': 'Umar Said',
+            'Sultan Azhar Zaid Rusmana': 'Andri Rusmana',
+            'Sulthan Alfatih Nurrrahim': 'Mashuri Afandi',
+            'Syahid Elgaza Hafidz Alfatih': 'Fahmi Akbar',
+            'Syakila Nur Khadijah': 'Tantan Hilyatana',
+            'Syaziya Haura Karim': 'Eri Priatna',
+            'Umair Al Maslul': 'Aryo Nur Firdaus',
+            'Umar Abdulhakim Alfaruq': 'Marwi Femil',
+            'Uwais': 'Ali',
+            'Wafa Sofiya Hibatillah': 'Nurdin Hidayat',
+            'Yusuf Abdullah Shabir': 'Iyan Rahadiyan',
+            'Zafina Aliya Hakim': 'Nasrul Hakim'
+        };
+
+        // Elements
+        const form = document.getElementById('cateringForm');
+        const namaSantriInput = document.getElementById('namaSantri');
+        const santriDropdown = document.getElementById('santriDropdown');
+        const namaAyahInput = document.getElementById('namaAyah');
+        const alergiRadios = document.querySelectorAll('input[name="alergi"]');
+        const jenisAlergiContainer = document.getElementById('jenisAlergiContainer');
+        const jenisAlergiInput = document.getElementById('jenisAlergi');
+        const minusBtn = document.getElementById('minusBtn');
+        const plusBtn = document.getElementById('plusBtn');
+        const jumlahHariInput = document.getElementById('jumlahHari');
+        const totalHarga = document.getElementById('totalHarga');
+        const successMessage = document.getElementById('successMessage');
+        const nomorWAInput = document.getElementById('nomorWA');
+        const syaratKetentuanLink = document.getElementById('syaratKetentuanLink');
+        const syaratModal = document.getElementById('syaratModal');
+        const closeSyaratModal = document.getElementById('closeSyaratModal');
+        const tutupSyaratModal = document.getElementById('tutupSyaratModal');
+        const konfirmasiModal = document.getElementById('konfirmasiModal');
+        const batalKonfirmasi = document.getElementById('batalKonfirmasi');
+        const lanjutkanPesanan = document.getElementById('lanjutkanPesanan');
+        const konfirmasiNamaSantri = document.getElementById('konfirmasiNamaSantri');
+        const konfirmasiJumlahHari = document.getElementById('konfirmasiJumlahHari');
+        const konfirmasiTotal = document.getElementById('konfirmasiTotal');
+
+        // Price per day
+        const hargaPerHari = 13500;
+
+        // Create dropdown options
+        function createDropdownOptions(filteredNames) {
+            santriDropdown.innerHTML = '';
+            
+            if (filteredNames.length === 0) {
+                santriDropdown.classList.add('hidden');
+                return;
+            }
+
+            filteredNames.forEach(namaSantri => {
+                const option = document.createElement('div');
+                option.className = 'px-4 py-2 hover:bg-purple-50 cursor-pointer border-b border-gray-100 last:border-b-0';
+                option.textContent = namaSantri;
+                option.addEventListener('click', function() {
+                    selectSantri(namaSantri);
+                });
+                santriDropdown.appendChild(option);
+            });
+
+            santriDropdown.classList.remove('hidden');
+        }
+
+        // Filter santri names based on input
+        function filterSantriNames(searchTerm) {
+            if (!searchTerm) {
+                return Object.keys(dataSantri);
+            }
+            
+            return Object.keys(dataSantri).filter(nama => 
+                nama.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        // Select santri and update ayah name
+        function selectSantri(namaSantri) {
+            namaSantriInput.value = namaSantri;
+            namaAyahInput.value = dataSantri[namaSantri] || '';
+            santriDropdown.classList.add('hidden');
+        }
+
+        // Handle input events
+        namaSantriInput.addEventListener('input', function() {
+            const searchTerm = this.value;
+            const filteredNames = filterSantriNames(searchTerm);
+            createDropdownOptions(filteredNames);
+            
+            // Clear ayah name if input doesn't match exactly
+            if (!dataSantri[searchTerm]) {
+                namaAyahInput.value = '';
+            }
+        });
+
+        namaSantriInput.addEventListener('focus', function() {
+            const searchTerm = this.value;
+            const filteredNames = filterSantriNames(searchTerm);
+            createDropdownOptions(filteredNames);
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!namaSantriInput.contains(e.target) && !santriDropdown.contains(e.target)) {
+                santriDropdown.classList.add('hidden');
+            }
+        });
+
+        // Show/hide allergy field
+        alergiRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'ya') {
+                    jenisAlergiContainer.classList.remove('hidden');
+                    jenisAlergiInput.required = true;
+                } else {
+                    jenisAlergiContainer.classList.add('hidden');
+                    jenisAlergiInput.required = false;
+                    jenisAlergiInput.value = '';
+                }
+            });
+        });
+
+        // Plus/minus buttons for quantity
+        minusBtn.addEventListener('click', function() {
+            let currentValue = parseInt(jumlahHariInput.value);
+            if (currentValue > 1) {
+                jumlahHariInput.value = currentValue - 1;
+                updateTotal();
+            }
+        });
+
+        plusBtn.addEventListener('click', function() {
+            let currentValue = parseInt(jumlahHariInput.value);
+            if (currentValue < 30) {
+                jumlahHariInput.value = currentValue + 1;
+                updateTotal();
+            }
+        });
+
+        // Update total price
+        function updateTotal() {
+            const jumlahHari = parseInt(jumlahHariInput.value);
+            const total = jumlahHari * hargaPerHari;
+            totalHarga.textContent = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        // Format phone number input (numbers only)
+        nomorWAInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Validate phone number
+            if (!/^[0-9]+$/.test(data.nomorWA)) {
+                alert('Nomor WhatsApp hanya boleh berisi angka tanpa spasi');
+                return;
+            }
+
+            // Show confirmation modal
+            showKonfirmasiModal(data);
+        });
+
+        // Show confirmation modal
+        function showKonfirmasiModal(data) {
+            konfirmasiNamaSantri.textContent = data.namaSantri;
+            konfirmasiJumlahHari.textContent = data.jumlahHari + ' hari';
+            
+            const jumlahHari = parseInt(data.jumlahHari);
+            const total = jumlahHari * hargaPerHari;
+            konfirmasiTotal.textContent = 'Rp ' + total.toLocaleString('id-ID');
+            
+            konfirmasiModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Modal syarat dan ketentuan
+        syaratKetentuanLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            syaratModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+
+        closeSyaratModal.addEventListener('click', function() {
+            syaratModal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+
+        tutupSyaratModal.addEventListener('click', function() {
+            syaratModal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+
+        // Close modal when clicking outside
+        syaratModal.addEventListener('click', function(e) {
+            if (e.target === syaratModal) {
+                syaratModal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+
+        // Modal konfirmasi pesanan handlers
+        batalKonfirmasi.addEventListener('click', function() {
+            konfirmasiModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        lanjutkanPesanan.addEventListener('click', function() {
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Build Google Form URL with prefilled data
+            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfHi9DKU4_nB7CERh-y6t__4-DE3Y5WpUP85wl7lSPdClapoQ/viewform';
+            const params = new URLSearchParams();
+            
+            // Map form data to Google Form entries
+            params.append('entry.1665070741', data.namaSantri || '');
+            params.append('entry.1265157135', data.namaAyah || '');
+            params.append('entry.1727430044', data.nomorWA || '');
+            params.append('entry.1140004793', data.levelKelas || '');
+            params.append('entry.1159157947', data.alergi === 'ya' ? 'Ya' : 'Tidak');
+            params.append('entry.287757135', data.jenisAlergi || '');
+            params.append('entry.1840165850', data.jumlahHari || '1');
+            
+            // Calculate total for Google Form
+            const jumlahHari = parseInt(data.jumlahHari || 1);
+            const total = jumlahHari * hargaPerHari;
+            params.append('entry.1694667164', 'Rp ' + total.toLocaleString('id-ID'));
+            
+            const googleFormUrl = baseUrl + '?' + params.toString();
+            
+            // Open Google Form in new tab
+            window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
+            
+            // Hide confirmation modal
+            konfirmasiModal.classList.add('hidden');
+            
+            // Show success message
+            form.style.display = 'none';
+            successMessage.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Close confirmation modal when clicking outside
+        konfirmasiModal.addEventListener('click', function(e) {
+            if (e.target === konfirmasiModal) {
+                konfirmasiModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Reset form function
+        function resetForm() {
+            // Reset all form fields
+            form.reset();
+            
+            // Reset specific fields
+            namaAyahInput.value = '';
+            jenisAlergiContainer.classList.add('hidden');
+            jenisAlergiInput.required = false;
+            jumlahHariInput.value = 1;
+            
+            // Hide dropdown
+            santriDropdown.classList.add('hidden');
+            
+            // Update total
+            updateTotal();
+            
+            // Show form and hide success message
+            form.style.display = 'block';
+            successMessage.classList.add('hidden');
+            
+            // Scroll to top of form
+            document.querySelector('.bg-white.rounded-2xl.shadow-xl').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Handle "Isi Kembali Formulir" button
+        document.getElementById('isiKembaliBtn').addEventListener('click', function() {
+            resetForm();
+        });
+
+        // Initialize total
+        updateTotal();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9821e2f977ea8a13',t:'MTc1ODM3NzIyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
