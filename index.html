@@ -9,13 +9,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
         }
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen py-8">
+<body class="gradient-bg min-h-full py-8">
     <div class="max-w-2xl mx-auto px-4">
         <!-- Header -->
         <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
@@ -75,12 +76,10 @@
                     <label for="nomorWA" class="block text-sm font-semibold text-gray-700 mb-2">
                         Nomor WhatsApp Orang Tua <span class="text-red-500">*</span>
                     </label>
-                    <input type="tel" id="nomorWA" name="nomorWA" required
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                           placeholder="Contoh: 081234567890"
-                           pattern="[0-9]+"
-                           title="Hanya angka, tanpa spasi">
-                    <p class="text-xs text-gray-500 mt-1">*Hanya angka, tanpa spasi</p>
+                    <input type="tel" id="nomorWA" name="nomorWA" required readonly
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+                           placeholder="Akan terisi otomatis setelah memilih santri">
+                    <p class="text-xs text-gray-500 mt-1">*Nomor akan terisi otomatis dari database</p>
                 </div>
 
                 <!-- Level/Kelas -->
@@ -88,9 +87,9 @@
                     <label for="levelKelas" class="block text-sm font-semibold text-gray-700 mb-2">
                         Level / Kelas <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" id="levelKelas" name="levelKelas" required
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                           placeholder="Masukkan level/kelas santri">
+                    <input type="text" id="levelKelas" name="levelKelas" required readonly
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+                           placeholder="Akan terisi otomatis setelah memilih santri">
                 </div>
 
                 <!-- Alergi -->
@@ -271,82 +270,80 @@
     </div>
 
     <script>
-        // Data santri dan ayah
+        // Data santri dengan ayah, kelas, dan nomor WA
         const dataSantri = {
-            'Abdullah Bin Fachrial Mar\'ie': 'Fachrial Riza',
-            'Abraham Syuja Kramadibrata': 'Tri Widi Ganuwiara',
-            'Afiqa Maryam': 'Adi Saeful Hamdi',
-            'Aisha Naia Ash Shaliha': 'Fakhri Nur Ahmad',
-            'Al-Ghumaisha Nazafarin Azmya': 'Dian Permana',
-            'Alhazen Nawyan': 'Saiful Anwar',
-            'Alifah Aisha Yasmin': 'Eka Fitriyadi',
-            'Aliyah Malik Auliya Rahman': 'Syaeful Rochman',
-            'Almira Ghaziya Rahma': 'Yogi Pratama',
-            'Alwi Abdul Kariim': 'Khazani Ilman',
-            'Arfa Abidah Qurrota\'Aini': 'Anto',
-            'Arrayah Arham Atqiya': 'Aufa Arham Khaeruddin',
-            'Asiyah Ahsanu Amala': 'Andi Sulistyo Nugroho',
-            'Asiyah Shabrina Candradimuka': 'Wahid Lalang Buana',
-            'Ayana Sofya Shabira': 'Ujang Yandri',
-            'Azzam Athazaky Al Hafidz': 'Sopian Gandhi',
-            'Bakr Ash Shiddiq Rachmat': 'Sidiq Purnama Rachmat',
-            'Elfath Nuswantara': 'Ahmad Kemaludin',
-            'Emir Syafiq Elmultazim': 'Sahlan Muhammad Faqih',
-            'Fatima Nurul Jannah': 'Arif Budiyono',
-            'Fatimah Ar Radhiyah': 'Alvin Ali Efendi',
-            'Fatimah Qonita Rahmah': 'Ihsan Ali Muharom',
-            'Ghazzal Lucky Thabrani': 'Lucky Yordiansyah',
-            'Habibi Zayan Malik Al Mumtaz': 'Malik Abdillah Ibnul Hakim',
-            'Hafiz Alkhairi Purnama': 'Ridwan Purnama',
-            'Hafizh Zayn Al Kahfi': 'Henrik',
-            'Hamizan Afkari Ar-Rayyan': 'Gema Akbaruhzian',
-            'Hamzah Yusuf Riksa': 'Yosep Wijaya Riksa',
-            'Hana Ainunnisa Zaini': 'Mohammad Zaini Dahlan',
-            'Hanna Ayra Nourazmina': 'Adan Rahman Sarsono',
-            'Hasya Maryam Mahdiya': 'Beni Dahlan',
-            'Hayya Atqia Tasnim': 'Muhayat',
-            'Hilya Mafaza Eidelweis': 'E Gunawan',
-            'Hudzaifah Rijalul Haq': 'Faizal Firmansyah',
-            'Iltizam Irsyadul Haq': 'Mochammad Ridwan',
-            'Isaac Abdul Mateen': 'Irvan Amirulloh',
-            'Ja\'far Abdurrahman Hakiim': 'Taufiiqul Hakiim Raharjo',
-            'Khalid Arfan Setiawan': 'Irfan Rachmat Setiawan',
-            'Khodijah Hanaan Muthmainnah': 'Irman Abdul Rohman',
-            'Lashira Khaulah Aziza': 'Muhammad Abdul Azis',
-            'Maryam Adiba Suherman': 'Herman Bambang Suherman',
-            'Maryam Ahsanul Karimah': 'Dinan Andiwijayakusuma',
-            'Misya Hauna Al-Fayyadh': 'Ujang Sopian',
-            'Muhamad Al Fatih Rusmana': 'Andri Rusmana',
-            'Muhammad Alfatih Arsyad': 'Alvin Ali Efendi',
-            'Muhammad Athazaky Sulur': 'Acep Rahman Surur',
-            'Muhammad Hisyam Abdillah Nugraha': 'Mochammad Hilvan Nugraha',
-            'Muhammad Khobab Aly Atsaqil': 'Nurdin Hayat',
-            'Muhammad Qiyas Fadhil Abyan': 'Awan Sudarwan',
-            'Muhammad Sea Al Auvi': 'Pipin Pramudiana',
-            'Muhammad Zaid Al Fatih': 'Junet Haryanto',
-            'Mujaddid Argi Mufassir Al-Furqan': 'Yogi Cahya Nugraha',
-            'Mushlih Abbad Afandi': 'Mashuri Afandi',
-            'Nadheera Rayna Zahirah': 'Muhammad Dawud',
-            'Nailah Aya Sofya': 'Muslimin Amin',
-            'Omar Al Farouq': 'Ahmad Ardan',
-            'Ozil Adn Kabeer': 'Yudi Supriadi',
-            'Ranu Askar Firdaus': 'Fajar Firdaus',
-            'Rayyan Khair Rabbani': 'Robi Afrizan Saputra',
-            'Rumaishah Haamidah Firdaus': 'Fajar Firdaus',
-            'Saad Abdillah Adn': 'Sandi Ahadian',
-            'Sayyid Ribathus Syam': 'Iqbal Santosa',
-            'Shajea Hayfa Zahira': 'Umar Said',
-            'Sultan Azhar Zaid Rusmana': 'Andri Rusmana',
-            'Sulthan Alfatih Nurrrahim': 'Mashuri Afandi',
-            'Syahid Elgaza Hafidz Alfatih': 'Fahmi Akbar',
-            'Syakila Nur Khadijah': 'Tantan Hilyatana',
-            'Syaziya Haura Karim': 'Eri Priatna',
-            'Umair Al Maslul': 'Aryo Nur Firdaus',
-            'Umar Abdulhakim Alfaruq': 'Marwi Femil',
-            'Uwais': 'Ali',
-            'Wafa Sofiya Hibatillah': 'Nurdin Hidayat',
-            'Yusuf Abdullah Shabir': 'Iyan Rahadiyan',
-            'Zafina Aliya Hakim': 'Nasrul Hakim'
+            'Abdullah Bin Fachrial Mar\'ie': { ayah: 'Fachrial Riza', kelas: 'Kuttab Awal 1A', nomorWA: '6285933140455' },
+            'Abraham Syuja Kramadibrata': { ayah: 'Tri Widi Ganuwiara', kelas: 'Kuttab Awal 1D', nomorWA: '6289658570950' },
+            'Afiqa Maryam': { ayah: 'Adi Saeful Hamdi', kelas: 'Kuttab Awal 2F', nomorWA: '6289512297977' },
+            'Aisha Naia Ash Shaliha': { ayah: 'Fakhri Nur Ahmad', kelas: 'Kuttab Awal 1B', nomorWA: '6282115434849' },
+            'Al-Ghumaisha Nazafarin Azmya': { ayah: 'Dian Permana', kelas: 'Kuttab Awal 1E', nomorWA: '6281220434396' },
+            'Alhazen Nawyan': { ayah: 'Saiful Anwar', kelas: 'Kuttab Awal 1D', nomorWA: '62895361217700' },
+            'Alifah Aisha Yasmin': { ayah: 'Eka Fitriyadi', kelas: 'Kuttab Awal 1C', nomorWA: '6285227401775' },
+            'Aliyah Malik Auliya Rahman': { ayah: 'Syaeful Rochman', kelas: 'Kuttab Awal 1B', nomorWA: '6282182323910' },
+            'Almira Ghaziya Rahma': { ayah: 'Yogi Pratama', kelas: 'Kuttab Awal 1E', nomorWA: '6285624197501' },
+            'Alwi Abdul Kariim': { ayah: 'Khazani Ilman', kelas: 'Kuttab Awal 1D', nomorWA: '628996928728' },
+            'Arfa Abidah Qurrota\'Aini': { ayah: 'Anto', kelas: 'Kuttab Awal 1D', nomorWA: '6283838351002' },
+            'Arrayah Arham Atqiya': { ayah: 'Aufa Arham Khaeruddin', kelas: 'Kuttab Awal 1E', nomorWA: '628112226991' },
+            'Asiyah Ahsanu Amala': { ayah: 'Andi Sulistyo Nugroho', kelas: 'Kuttab Awal 1C', nomorWA: '628126057093' },
+            'Asiyah Shabrina Candradimuka': { ayah: 'Wahid Lalang Buana', kelas: 'Kuttab Awal 1C', nomorWA: '6281214241860' },
+            'Ayana Sofya Shabira': { ayah: 'Ujang Yandri', kelas: 'Kuttab Awal 1B', nomorWA: '6281214642698' },
+            'Azzam Athazaky Al Hafidz': { ayah: 'Sopian Gandhi', kelas: 'Kuttab Awal 1D', nomorWA: '62895377012575' },
+            'Elfath Nuswantara': { ayah: 'Ahmad Kemaludin', kelas: 'Kuttab Awal 1A', nomorWA: '6285222311523' },
+            'Emir Syafiq Elmultazim': { ayah: 'Sahlan Muhammad Faqih', kelas: 'Kuttab Awal 2F', nomorWA: '6285759078714' },
+            'Fatima Nurul Jannah': { ayah: 'Arif Budiyono', kelas: 'Kuttab Awal 1A', nomorWA: '6282315783113' },
+            'Fatimah Ar Radhiyah': { ayah: 'Alvin Ali Efendi', kelas: 'Kuttab Awal 1D', nomorWA: '62881022403207' },
+            'Fatimah Qonita Rahmah': { ayah: 'Ihsan Ali Muharom', kelas: 'Kuttab Awal 1E', nomorWA: '6282120024565' },
+            'Ghazzal Lucky Thabrani': { ayah: 'Lucky Yordiansyah', kelas: 'Kuttab Awal 1A', nomorWA: '6282218896442' },
+            'Habibi Zayan Malik Al Mumtaz': { ayah: 'Malik Abdillah Ibnul Hakim', kelas: 'Kuttab Awal 1C', nomorWA: '6282240723841' },
+            'Hafiz Alkhairi Purnama': { ayah: 'Ridwan Purnama', kelas: 'Kuttab Awal 1B', nomorWA: '6281394588400' },
+            'Hafizh Zayn Al Kahfi': { ayah: 'Henrik', kelas: 'Kuttab Awal 2F', nomorWA: '6287766770112' },
+            'Hamizan Afkari Ar-Rayyan': { ayah: 'Gema Akbaruhzian', kelas: 'Kuttab Awal 1C', nomorWA: '6287738842280' },
+            'Hamzah Yusuf Riksa': { ayah: 'Yosep Wijaya Riksa', kelas: 'Kuttab Awal 1B', nomorWA: '6285241289686' },
+            'Hana Ainunnisa Zaini': { ayah: 'Mohammad Zaini Dahlan', kelas: 'Kuttab Awal 1D', nomorWA: '6281220881988' },
+            'Hanna Ayra Nourazmina': { ayah: 'Adan Rahman Sarsono', kelas: 'Kuttab Awal 1A', nomorWA: '6281322686832' },
+            'Hayya Atqia Tasnim': { ayah: 'Muhayat', kelas: 'Kuttab Awal 1B', nomorWA: '6281320747174' },
+            'Hilya Mafaza Eidelweis': { ayah: 'E Gunawan', kelas: 'Kuttab Awal 2F', nomorWA: '6281214460560' },
+            'Hudzaifah Rijalul Haq': { ayah: 'Faizal Firmansyah', kelas: 'Kuttab Awal 1E', nomorWA: '628112051810' },
+            'Iltizam Irsyadul Haq': { ayah: 'Mochammad Ridwan', kelas: 'Kuttab Awal 1E', nomorWA: '6282217055231' },
+            'Isaac Abdul Mateen': { ayah: 'Irvan Amirulloh', kelas: 'Kuttab Awal 1E', nomorWA: '6281320198331' },
+            'Ja\'far Abdurrahman Hakiim': { ayah: 'Taufiiqul Hakiim Raharjo', kelas: 'Kuttab Awal 1B', nomorWA: '6285781760800' },
+            'Khalid Arfan Setiawan': { ayah: 'Irfan Rachmat Setiawan', kelas: 'Kuttab Awal 1C', nomorWA: '6281809259099' },
+            'Khodijah Hanaan Muthmainnah': { ayah: 'Irman Abdul Rohman', kelas: 'Kuttab Awal 1A', nomorWA: '6281323514292' },
+            'Lashira Khaulah Aziza': { ayah: 'Muhammad Abdul Azis', kelas: 'Kuttab Awal 1A', nomorWA: '628880371482' },
+            'Maryam Adiba Suherman': { ayah: 'Herman Bambang Suherman', kelas: 'Kuttab Awal 1D', nomorWA: '6282127181013' },
+            'Maryam Ahsanul Karimah': { ayah: 'Dinan Andiwijayakusuma', kelas: 'Kuttab Awal 2C', nomorWA: '6282216618559' },
+            'Misya Hauna Al-Fayyadh': { ayah: 'Ujang Sopian', kelas: 'Kuttab Awal 1B', nomorWA: '6281809136363' },
+            'Muhammad Alfatih Arsyad': { ayah: 'Alvin Ali Efendi', kelas: 'Kuttab Awal 2F', nomorWA: '62881022403207' },
+            'Muhammad Athazaky Sulur': { ayah: 'Acep Rahman Surur', kelas: 'Kuttab Awal 2F', nomorWA: '6281573753763' },
+            'Muhammad Hisyam Abdillah Nugraha': { ayah: 'Mochammad Hilvan Nugraha', kelas: 'Kuttab Awal 1C', nomorWA: '6287774078428' },
+            'Muhammad Khobab Aly Atsaqil': { ayah: 'Nurdin Hayat', kelas: 'Kuttab Awal 1E', nomorWA: '6281324865415' },
+            'Muhammad Qiyas Fadhil Abyan': { ayah: 'Awan Sudarwan', kelas: 'Kuttab Awal 1D', nomorWA: '628562258886' },
+            'Muhammad Sea Al Auvi': { ayah: 'Pipin Pramudiana', kelas: 'Kuttab Awal 2F', nomorWA: '6281910428181' },
+            'Muhammad Zaid Al Fatih': { ayah: 'Junet Haryanto', kelas: 'Kuttab Awal 1A', nomorWA: '628999808552' },
+            'Mujaddid Argi Mufassir Al-Furqan': { ayah: 'Yogi Cahya Nugraha', kelas: 'Kuttab Awal 1B', nomorWA: '6282218181016' },
+            'Mushlih Abbad Afandi': { ayah: 'Mashuri Afandi', kelas: 'Kuttab Awal 1B', nomorWA: '628113340899' },
+            'Nadheera Rayna Zahirah': { ayah: 'Muhammad Dawud', kelas: 'Kuttab Awal 1B', nomorWA: '6285316045401' },
+            'Nailah Aya Sofya': { ayah: 'Muslimin Amin', kelas: 'Kuttab Awal 1A', nomorWA: ''62881023771630' },
+            'Omar Al Farouq': { ayah: 'Ahmad Ardan', kelas: 'Kuttab Awal 1D', nomorWA: '6285669162029' },
+            'Ranu Askar Firdaus': { ayah: 'Fajar Firdaus', kelas: 'Kuttab Awal 1E', nomorWA: '6282314221858' },
+            'Rayyan Khair Rabbani': { ayah: 'Robi Afrizan Saputra', kelas: 'Kuttab Awal 1B', nomorWA: '6289603684472' },
+            'Rumaishah Haamidah Firdaus': { ayah: 'Fajar Firdaus', kelas: 'Kuttab Awal 2F', nomorWA: '6282314221858' },
+            'Saad Abdillah Adn': { ayah: 'Sandi Ahadian', kelas: 'Kuttab Awal 1E', nomorWA: '6283822645027' },
+            'Sayyid Ribathus Syam': { ayah: 'Iqbal Santosa', kelas: 'Kuttab Awal 1C', nomorWA: '6285156611581' },
+            'Shajea Hayfa Zahira': { ayah: 'Umar Said', kelas: 'Kuttab Awal 1C', nomorWA: '6281324659355' },
+            'Sultan Azhar Zaid Rusmana': { ayah: 'Andri Rusmana', kelas: 'Kuttab Awal 2A', nomorWA: '6281320107112' },
+            'Sulthan Alfatih Nurrrahim': { ayah: 'Mashuri Afandi', kelas: 'Kuttab Awal 2F', nomorWA: '628113340899' },
+            'Syakila Nur Khadijah': { ayah: 'Tantan Hilyatana', kelas: 'Kuttab Awal 1D', nomorWA: '6285222977033' },
+            'Umair Al Maslul': { ayah: 'Aryo Nur Firdaus', kelas: 'Kuttab Awal 1C', nomorWA: '6282120858772' },
+            'Umar Abdulhakim Al-Fatih': { ayah: 'Marwi Femil', kelas: 'Kuttab Awal 1E', nomorWA: '6281322299984' },
+            'Uwais': { ayah: 'Ali', kelas: 'Kuttab Awal 1A', nomorWA: '6283829519038' },
+            'Wafa Sofiya Hibatillah': { ayah: 'Nurdin Hidayat', kelas: 'Kuttab Awal 1A', nomorWA: '6285320758651' },
+            'Yusuf Abdullah Shabir': { ayah: 'Iyan Rahadiyan', kelas: 'Kuttab Awal 2F', nomorWA: '6285772220079' },
+            'Zafina Aliya Hakim': { ayah: 'Nasrul Hakim', kelas: 'Kuttab Awal 1C', nomorWA: '6281322332919' },
+            'Asiyah Qonita Shabirah': { ayah: 'Iyan Rahadiyan', kelas: 'Kuttab Awal 3B', nomorWA: '6285772220079' },
+            'Azzam Alfarizi Arrafiq': { ayah: 'Jefry Triagus Purnomohadi', kelas: 'Kuttab Awal 1C', nomorWA: '6282146255741' },
+            'Hamzah Al Qassam Nurmagomedov': { ayah: 'Ahmad Afif Nadzir', kelas: 'Kuttab Awal 2F', nomorWA: '0' },
+            'Hisyam Jaisyur Rahman': { ayah: 'M. Ikhwan Ul-Haq', kelas: 'Kuttab Awal 1A', nomorWA: '0' }
         };
 
         // Elements
@@ -410,10 +407,19 @@
             );
         }
 
-        // Select santri and update ayah name
+        // Select santri and update ayah name, kelas, and nomor WA
         function selectSantri(namaSantri) {
             namaSantriInput.value = namaSantri;
-            namaAyahInput.value = dataSantri[namaSantri] || '';
+            const santriData = dataSantri[namaSantri];
+            if (santriData) {
+                namaAyahInput.value = santriData.ayah || '';
+                document.getElementById('levelKelas').value = santriData.kelas || '';
+                document.getElementById('nomorWA').value = santriData.nomorWA || '';
+            } else {
+                namaAyahInput.value = '';
+                document.getElementById('levelKelas').value = '';
+                document.getElementById('nomorWA').value = '';
+            }
             santriDropdown.classList.add('hidden');
         }
 
@@ -423,9 +429,11 @@
             const filteredNames = filterSantriNames(searchTerm);
             createDropdownOptions(filteredNames);
             
-            // Clear ayah name if input doesn't match exactly
+            // Clear all fields if input doesn't match exactly
             if (!dataSantri[searchTerm]) {
                 namaAyahInput.value = '';
+                document.getElementById('levelKelas').value = '';
+                document.getElementById('nomorWA').value = '';
             }
         });
 
@@ -487,11 +495,6 @@
             totalHarga.textContent = 'Rp ' + total.toLocaleString('id-ID');
         }
 
-        // Format phone number input (numbers only)
-        nomorWAInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-
         // Form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -499,12 +502,6 @@
             // Get form data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
-            
-            // Validate phone number
-            if (!/^[0-9]+$/.test(data.nomorWA)) {
-                alert('Nomor WhatsApp hanya boleh berisi angka tanpa spasi');
-                return;
-            }
 
             // Show confirmation modal
             showKonfirmasiModal(data);
@@ -609,6 +606,8 @@
             
             // Reset specific fields
             namaAyahInput.value = '';
+            document.getElementById('levelKelas').value = '';
+            document.getElementById('nomorWA').value = '';
             jenisAlergiContainer.classList.add('hidden');
             jenisAlergiInput.required = false;
             jumlahHariInput.value = 1;
@@ -638,5 +637,5 @@
         // Initialize total
         updateTotal();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'984f697d408b4f6a',t:'MTc1ODg1NDU4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e51d84360cbd94',t:'MTc2MDQyNDM0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
