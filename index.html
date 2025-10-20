@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi Pembayaran Katering Santri Baru</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfirmasi Pembayaran Katering Santri Baru</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
@@ -15,263 +15,166 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
     </style>
-</head>
-<body class="gradient-bg min-h-full py-8">
-    <div class="max-w-2xl mx-auto px-4">
-        <!-- Header -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
-            <div class="text-center">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZLYhhcn24Ldg-Oi9fPz47a-r_IVHV2tbr1VhFXs424_MkjJfgrSIZyVmddxmyZ5PaUAT4gxPPXe_uH5DziW2rsJnIlTycyAAYrMrAz588ytSsbqyHfDVI3xvlXwpQfCaZqmNcFnecApQIapC2jGVcDQgDp01G_8fPvVV397vxuOU_Ge8aDKHupI4Yo1I/s500/Masakin%20aja.png" 
-                     alt="Logo Masakin Aja" 
-                     class="mx-auto mb-4 h-20 w-auto"
-                     onerror="this.src=''; this.alt='Logo Masakin Aja'; this.style.display='none';">
-                <h1 class="text-2xl font-bold text-gray-800 mb-2">Konfirmasi Pembayaran Katering</h1>
-                <h2 class="text-lg font-semibold text-purple-600 mb-1">Santri Baru Kuttab Al Fatih Gedebage</h2>
-                <p class="text-gray-600">Tahun 2025-2026</p>
-                <div class="mt-4 p-3 bg-purple-50 rounded-lg">
-                    <p class="text-sm text-purple-700 font-medium">Penyelenggara: Masakin Aja</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Form -->
-        <div class="bg-white rounded-2xl shadow-xl p-8">
-            <form id="cateringForm" class="space-y-6">
-                <!-- Syarat dan Ketentuan -->
-                <div class="bg-purple-50 border border-purple-200 rounded-xl p-6">
-                    <label class="flex items-start space-x-3 cursor-pointer">
-                        <input type="checkbox" id="syaratKetentuan" name="syaratKetentuan" required
-                               class="w-5 h-5 text-purple-600 border-2 border-gray-300 rounded focus:ring-purple-500 focus:ring-2 mt-0.5">
-                        <span class="text-sm font-medium text-gray-800">
-                            Saya Menyetujui <a href="#" id="syaratKetentuanLink" class="text-blue-600 hover:text-blue-800 underline">Syarat dan Ketentuan Catering Santri</a> <span class="text-red-500">*</span>
-                        </span>
-                    </label>
-                </div>
-
-                <!-- Nama Santri -->
-                <div class="relative">
-                    <label for="namaSantri" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Nama Santri <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="namaSantri" name="namaSantri" required autocomplete="off"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                           placeholder="Ketik atau pilih nama santri">
-                    <div id="santriDropdown" class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto hidden">
-                        <!-- Dropdown options akan ditambahkan di sini -->
-                    </div>
-                </div>
-
-                <!-- Nama Ayah -->
-                <div>
-                    <label for="namaAyah" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Nama Ayah <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="namaAyah" name="namaAyah" required readonly
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
-                           placeholder="Akan terisi otomatis setelah memilih santri">
-                </div>
-
-                <!-- Nomor WA -->
-                <div>
-                    <label for="nomorWA" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Nomor WhatsApp Orang Tua <span class="text-red-500">*</span>
-                    </label>
-                    <input type="tel" id="nomorWA" name="nomorWA" required readonly
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
-                           placeholder="Akan terisi otomatis setelah memilih santri">
-                    <p class="text-xs text-gray-500 mt-1">*Nomor akan terisi otomatis dari database</p>
-                </div>
-
-                <!-- Level/Kelas -->
-                <div>
-                    <label for="levelKelas" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Level / Kelas <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="levelKelas" name="levelKelas" required readonly
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
-                           placeholder="Akan terisi otomatis setelah memilih santri">
-                </div>
-
-                <!-- Alergi -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">
-                        Apakah anak Anda memiliki alergi? <span class="text-red-500">*</span>
-                    </label>
-                    <div class="flex space-x-6">
-                        <label class="flex items-center">
-                            <input type="radio" name="alergi" value="tidak" required
-                                   class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
-                            <span class="ml-2 text-gray-700">Tidak</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="radio" name="alergi" value="ya" required
-                                   class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500">
-                            <span class="ml-2 text-gray-700">Ya</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Jenis Alergi (Hidden by default) -->
-                <div id="jenisAlergiContainer" class="hidden">
-                    <label for="jenisAlergi" class="block text-sm font-semibold text-gray-700 mb-2">
-                        Sebutkan Jenis Alergi Makanannya <span class="text-red-500">*</span>
-                    </label>
-                    <textarea id="jenisAlergi" name="jenisAlergi" rows="3"
-                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                              placeholder="Contoh: Kacang, seafood, telur, dll."></textarea>
-                </div>
-
-                <!-- Jumlah Hari -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">
-                        Jumlah Hari Pesanan Catering <span class="text-red-500">*</span>
-                    </label>
-                    <div class="flex items-center space-x-4">
-                        <button type="button" id="minusBtn" 
-                                class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center">
-                            −
-                        </button>
-                        <div class="flex-1 text-center">
-                            <input type="number" id="jumlahHari" name="jumlahHari" value="1" min="1"
-                                   class="w-20 text-center text-2xl font-bold py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
-                            <p class="text-sm text-gray-500 mt-1">hari</p>
-                        </div>
-                        <button type="button" id="plusBtn"
-                                class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center">
-                            +
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Total Pembayaran -->
-                <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-200">
-                    <div class="text-center">
-                        <p class="text-lg font-semibold text-gray-700 mb-2">Total yang Harus Dibayar</p>
-                        <p id="totalHarga" class="text-3xl font-bold text-purple-600">Rp 13.500</p>
-                        <p class="text-sm text-gray-500 mt-1">Harga per hari: Rp 13.500</p>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" 
-                        class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg">
-                    Kirim Pesanan
-                </button>
-            </form>
-        </div>
-
-        <!-- Success Message (Hidden by default) -->
-        <div id="successMessage" class="hidden bg-green-50 border border-green-200 rounded-xl p-6 mt-6">
-            <div class="text-center">
-                <div class="text-green-600 text-4xl mb-3">✓</div>
-                <h3 class="text-lg font-semibold text-green-800 mb-2">Pesanan Berhasil Dikirim!</h3>
-                <p class="text-green-700 mb-4">Terima kasih atas pesanan Anda. Hubungi Tim Masakin Aja Jika Ada Pertanyaan.</p>
-                <button id="isiKembaliBtn" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg">
-                    📝 Isi Kembali Formulir
-                </button>
-            </div>
-        </div>
-
-        <!-- Modal Konfirmasi Pesanan -->
-        <div id="konfirmasiModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
-                <div class="p-6">
-                    <div class="text-center mb-6">
-                        <div class="text-purple-600 text-4xl mb-3">📋</div>
-                        <h2 class="text-2xl font-bold text-gray-800">Konfirmasi Pesanan</h2>
-                        <p class="text-gray-600 text-sm mt-2">Mohon periksa kembali detail pesanan Anda</p>
-                        <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                            <p class="text-sm text-blue-700 font-medium">
-                                ⚠️ Formulir akan dilanjutkan ke Google Form<br>
-                                Jangan lupa untuk klik 'Kirim' pada Google Form!
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-sm font-medium text-gray-600">Nama Santri:</span>
-                            </div>
-                            <p id="konfirmasiNamaSantri" class="font-semibold text-gray-800"></p>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Jumlah Hari:</span>
-                                <span id="konfirmasiJumlahHari" class="font-bold text-purple-600"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border border-purple-200">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-700">Total Pembayaran:</span>
-                                <span id="konfirmasiTotal" class="font-bold text-xl text-purple-600"></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-3">
-                        <button id="batalKonfirmasi" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-4 rounded-xl transition-colors duration-200">
-                            Batal
-                        </button>
-                        <button id="lanjutkanPesanan" class="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all duration-200">
-                            Lanjutkan
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Syarat dan Ketentuan -->
-        <div id="syaratModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-bold text-gray-800">Syarat dan Ketentuan Catering Santri</h2>
-                        <button id="closeSyaratModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
-                            ×
-                        </button>
-                    </div>
-                    <div class="space-y-4 text-gray-700">
-                        <div class="flex items-start space-x-3">
-                            <span class="text-purple-600 font-bold text-lg">1.</span>
-                            <p class="text-sm leading-relaxed">
-                                Pembatalan katering (karena tidak hadir ke kuttab atau ananda sedang shaum) hanya dapat dilakukan paling lambat pukul 05.00 WIB pada hari H dengan menghubungi admin MASAKINAJA secara langsung melalui chat. Dana yang telah dibayarkan dapat dikembalikan (refund) atau dijadikan deposit untuk pemesanan berikutnya.
-                            </p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-purple-600 font-bold text-lg">2.</span>
-                            <p class="text-sm leading-relaxed">
-                                Santri yang tidak hadir ke Kuttab, dan Wali Santri tidak menginformasikan pembatalan kepada admin (atau membatalkan di luar batas waktu yang telah ditentukan), maka jatah makannya akan dialihkan untuk dimanfaatkan oleh pihak Kuttab. Mohon maaf, dalam kondisi ini tidak ada pengembalian dana (refund).
-                            </p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-purple-600 font-bold text-lg">3.</span>
-                            <p class="text-sm leading-relaxed">
-                                Bagi santri yang meminjam box nasi MasakinAja, mohon segera mengembalikannya ke Dapur Al-Fatih (DAF), mengingat jumlah box yang tersedia sangat terbatas.
-                            </p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-purple-600 font-bold text-lg">4.</span>
-                            <p class="text-sm leading-relaxed">
-                                Pembayaran dilakukan bersamaan dengan pengisian Google Form, disertai dengan unggahan bukti transfer pada saat submit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-8 text-center">
-                        <button id="tutupSyaratModal" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl transition-colors duration-200">
-                            Tutup
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="gradient-bg min-h-full py-8">
+  <div class="max-w-2xl mx-auto px-4"><!-- Header -->
+   <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+    <div class="text-center"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZLYhhcn24Ldg-Oi9fPz47a-r_IVHV2tbr1VhFXs424_MkjJfgrSIZyVmddxmyZ5PaUAT4gxPPXe_uH5DziW2rsJnIlTycyAAYrMrAz588ytSsbqyHfDVI3xvlXwpQfCaZqmNcFnecApQIapC2jGVcDQgDp01G_8fPvVV397vxuOU_Ge8aDKHupI4Yo1I/s500/Masakin%20aja.png" alt="Logo Masakin Aja" class="mx-auto mb-4 h-20 w-auto" onerror="this.src=''; this.alt='Logo Masakin Aja'; this.style.display='none';">
+     <h1 class="text-2xl font-bold text-gray-800 mb-2">Konfirmasi Pembayaran Katering</h1>
+     <h2 class="text-lg font-semibold text-purple-600 mb-1">Santri Baru Kuttab Al Fatih Gedebage</h2>
+     <p class="text-gray-600">Tahun 2025-2026</p>
+     <div class="mt-4 p-3 bg-purple-50 rounded-lg">
+      <p class="text-sm text-purple-700 font-medium">Penyelenggara: Masakin Aja</p>
+     </div>
     </div>
-
-    <script>
+   </div><!-- Form -->
+   <div class="bg-white rounded-2xl shadow-xl p-8">
+    <form id="cateringForm" class="space-y-6"><!-- Syarat dan Ketentuan -->
+     <div class="bg-purple-50 border border-purple-200 rounded-xl p-6"><label class="flex items-start space-x-3 cursor-pointer"> <input type="checkbox" id="syaratKetentuan" name="syaratKetentuan" required class="w-5 h-5 text-purple-600 border-2 border-gray-300 rounded focus:ring-purple-500 focus:ring-2 mt-0.5"> <span class="text-sm font-medium text-gray-800"> Saya Menyetujui <a href="#" id="syaratKetentuanLink" class="text-blue-600 hover:text-blue-800 underline">Syarat dan Ketentuan Catering Santri</a> <span class="text-red-500">*</span> </span> </label>
+     </div><!-- Nama Santri -->
+     <div class="relative"><label for="namaSantri" class="block text-sm font-semibold text-gray-700 mb-2"> Nama Santri <span class="text-red-500">*</span> </label> <input type="text" id="namaSantri" name="namaSantri" required autocomplete="off" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200" placeholder="Ketik atau pilih nama santri">
+      <div id="santriDropdown" class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto hidden"><!-- Dropdown options akan ditambahkan di sini -->
+      </div>
+     </div><!-- Nama Ayah -->
+     <div><label for="namaAyah" class="block text-sm font-semibold text-gray-700 mb-2"> Nama Ayah <span class="text-red-500">*</span> </label> <input type="text" id="namaAyah" name="namaAyah" required readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700" placeholder="Akan terisi otomatis setelah memilih santri">
+     </div><!-- Nomor WA -->
+     <div><label for="nomorWA" class="block text-sm font-semibold text-gray-700 mb-2"> Nomor WhatsApp Orang Tua <span class="text-red-500">*</span> </label> <input type="tel" id="nomorWA" name="nomorWA" required readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700" placeholder="Akan terisi otomatis setelah memilih santri">
+      <p class="text-xs text-gray-500 mt-1">*Nomor akan terisi otomatis dari database</p>
+     </div><!-- Level/Kelas -->
+     <div><label for="levelKelas" class="block text-sm font-semibold text-gray-700 mb-2"> Level / Kelas <span class="text-red-500">*</span> </label> <input type="text" id="levelKelas" name="levelKelas" required readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700" placeholder="Akan terisi otomatis setelah memilih santri">
+     </div><!-- Alergi -->
+     <div><label class="block text-sm font-semibold text-gray-700 mb-3"> Apakah anak Anda memiliki alergi? <span class="text-red-500">*</span> </label>
+      <div class="flex space-x-6"><label class="flex items-center"> <input type="radio" name="alergi" value="tidak" required class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"> <span class="ml-2 text-gray-700">Tidak</span> </label> <label class="flex items-center"> <input type="radio" name="alergi" value="ya" required class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"> <span class="ml-2 text-gray-700">Ya</span> </label>
+      </div>
+     </div><!-- Jenis Alergi (Hidden by default) -->
+     <div id="jenisAlergiContainer" class="hidden"><label for="jenisAlergi" class="block text-sm font-semibold text-gray-700 mb-2"> Sebutkan Jenis Alergi Makanannya <span class="text-red-500">*</span> </label> <textarea id="jenisAlergi" name="jenisAlergi" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200" placeholder="Contoh: Kacang, seafood, telur, dll."></textarea>
+     </div><!-- Jumlah Hari -->
+     <div><label class="block text-sm font-semibold text-gray-700 mb-3"> Jumlah Hari Pesanan Catering <span class="text-red-500">*</span> </label>
+      <div class="flex items-center space-x-4"><button type="button" id="minusBtn" class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center"> − </button>
+       <div class="flex-1 text-center"><input type="number" id="jumlahHari" name="jumlahHari" value="1" min="1" class="w-20 text-center text-2xl font-bold py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200">
+        <p class="text-sm text-gray-500 mt-1">hari</p>
+       </div><button type="button" id="plusBtn" class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold text-xl transition-colors duration-200 flex items-center justify-center"> + </button>
+      </div>
+     </div><!-- Total Pembayaran -->
+     <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-200">
+      <div class="text-center">
+       <p class="text-lg font-semibold text-gray-700 mb-2">Total yang Harus Dibayar</p>
+       <p id="totalHarga" class="text-3xl font-bold text-purple-600">Rp 13.500</p>
+       <p class="text-sm text-gray-500 mt-1">Harga per hari: Rp 13.500</p>
+      </div>
+     </div><!-- Metode Pembayaran -->
+     <div><label class="block text-sm font-semibold text-gray-700 mb-3"> Metode Pembayaran <span class="text-red-500">*</span> </label>
+      <div class="grid grid-cols-2 gap-4"><label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50"> <input type="radio" name="metodePembayaran" value="transfer" required class="sr-only">
+        <div class="text-center">
+         <div class="text-2xl mb-2">
+          🏦
+         </div><span class="font-medium text-gray-700">Transfer Bank</span>
+        </div></label> <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50"> <input type="radio" name="metodePembayaran" value="qris" required class="sr-only">
+        <div class="text-center">
+         <div class="text-2xl mb-2">
+          📱
+         </div><span class="font-medium text-gray-700">QRIS</span>
+        </div></label>
+      </div><!-- Informasi Transfer Bank -->
+      <div id="transferInfo" class="hidden mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+       <div class="text-center">
+        <h4 class="font-semibold text-blue-800 mb-3">Informasi Transfer Bank</h4>
+        <div class="space-y-2">
+         <div class="flex justify-between items-center"><span class="text-sm text-blue-700">Bank:</span> <span class="font-semibold text-blue-800">BSI</span>
+         </div>
+         <div class="flex justify-between items-center"><span class="text-sm text-blue-700">Nomor Rekening:</span> <span class="font-semibold text-blue-800">3322222458</span>
+         </div>
+         <div class="flex justify-between items-center"><span class="text-sm text-blue-700">Atas Nama:</span> <span class="font-semibold text-blue-800">Dapur Al-Fatih</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Informasi QRIS -->
+      <div id="qrisInfo" class="hidden mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+       <div class="text-center">
+        <h4 class="font-semibold text-green-800 mb-3">Scan QRIS untuk Pembayaran</h4>
+        <div class="flex justify-center"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEh2-glCNcV0KwE-pKEqqgC1iHGSgcpCBHyLN6ehkX7SZpZLN7kE6r8za1dxy70KcR3cECW5anAfP9LxfHY5V50tJwETT7wH5GNbY2UhM84geH0V7ZimdY92IIbjtgZT5rWtwqq_JxXp2t-7fJxTkfyVQDyZAUgEZfGorBLxXCwLIiE-dG7YVOKGiHe_8Tw" alt="QRIS Dapur Al-Fatih" class="w-48 h-48 object-contain border border-gray-300 rounded-lg" onerror="this.src=''; this.alt='QRIS tidak dapat dimuat'; this.style.display='none';">
+        </div>
+        <p class="text-sm text-green-700 mt-2">Scan dengan aplikasi mobile banking atau e-wallet Anda</p>
+       </div>
+      </div>
+     </div><!-- Submit Button --> <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"> Kirim Pesanan </button>
+    </form>
+   </div><!-- Success Message (Hidden by default) -->
+   <div id="successMessage" class="hidden bg-green-50 border border-green-200 rounded-xl p-6 mt-6">
+    <div class="text-center">
+     <div class="text-green-600 text-4xl mb-3">
+      ✓
+     </div>
+     <h3 class="text-lg font-semibold text-green-800 mb-2">Pesanan Berhasil Dikirim!</h3>
+     <p class="text-green-700 mb-4">Terima kasih atas pesanan Anda. Hubungi Tim Masakin Aja Jika Ada Pertanyaan.</p><button id="isiKembaliBtn" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"> 📝 Isi Kembali Formulir </button>
+    </div>
+   </div><!-- Modal Konfirmasi Pesanan -->
+   <div id="konfirmasiModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+     <div class="p-6">
+      <div class="text-center mb-6">
+       <div class="text-purple-600 text-4xl mb-3">
+        📋
+       </div>
+       <h2 class="text-2xl font-bold text-gray-800">Konfirmasi Pesanan</h2>
+       <p class="text-gray-600 text-sm mt-2">Mohon periksa kembali detail pesanan Anda</p>
+       <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <p class="text-sm text-blue-700 font-medium">⚠️ Formulir akan dilanjutkan ke Google Form<br>
+          Jangan lupa untuk klik 'Kirim' pada Google Form!</p>
+       </div>
+      </div>
+      <div class="space-y-4 mb-6">
+       <div class="bg-gray-50 p-4 rounded-lg">
+        <div class="flex justify-between items-center mb-2"><span class="text-sm font-medium text-gray-600">Nama Santri:</span>
+        </div>
+        <p id="konfirmasiNamaSantri" class="font-semibold text-gray-800"></p>
+       </div>
+       <div class="bg-gray-50 p-4 rounded-lg">
+        <div class="flex justify-between items-center"><span class="text-sm font-medium text-gray-600">Jumlah Hari:</span> <span id="konfirmasiJumlahHari" class="font-bold text-purple-600"></span>
+        </div>
+       </div>
+       <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border border-purple-200">
+        <div class="flex justify-between items-center"><span class="text-sm font-medium text-gray-700">Total Pembayaran:</span> <span id="konfirmasiTotal" class="font-bold text-xl text-purple-600"></span>
+        </div>
+       </div>
+      </div>
+      <div class="flex space-x-3"><button id="batalKonfirmasi" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-4 rounded-xl transition-colors duration-200"> Batal </button> <button id="lanjutkanPesanan" class="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all duration-200"> Lanjutkan </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Modal Syarat dan Ketentuan -->
+   <div id="syaratModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+       <h2 class="text-2xl font-bold text-gray-800">Syarat dan Ketentuan Catering Santri</h2><button id="closeSyaratModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold"> × </button>
+      </div>
+      <div class="space-y-4 text-gray-700">
+       <div class="flex items-start space-x-3"><span class="text-purple-600 font-bold text-lg">1.</span>
+        <p class="text-sm leading-relaxed">Pembatalan katering (karena tidak hadir ke kuttab atau ananda sedang shaum) hanya dapat dilakukan paling lambat pukul 05.00 WIB pada hari H dengan menghubungi admin MASAKINAJA secara langsung melalui chat. Dana yang telah dibayarkan dapat dikembalikan (refund) atau dijadikan deposit untuk pemesanan berikutnya.</p>
+       </div>
+       <div class="flex items-start space-x-3"><span class="text-purple-600 font-bold text-lg">2.</span>
+        <p class="text-sm leading-relaxed">Santri yang tidak hadir ke Kuttab, dan Wali Santri tidak menginformasikan pembatalan kepada admin (atau membatalkan di luar batas waktu yang telah ditentukan), maka jatah makannya akan dialihkan untuk dimanfaatkan oleh pihak Kuttab. Mohon maaf, dalam kondisi ini tidak ada pengembalian dana (refund).</p>
+       </div>
+       <div class="flex items-start space-x-3"><span class="text-purple-600 font-bold text-lg">3.</span>
+        <p class="text-sm leading-relaxed">Bagi santri yang meminjam box nasi MasakinAja, mohon segera mengembalikannya ke Dapur Al-Fatih (DAF), mengingat jumlah box yang tersedia sangat terbatas.</p>
+       </div>
+       <div class="flex items-start space-x-3"><span class="text-purple-600 font-bold text-lg">4.</span>
+        <p class="text-sm leading-relaxed">Pembayaran dilakukan bersamaan dengan pengisian Google Form, disertai dengan unggahan bukti transfer pada saat submit.</p>
+       </div>
+      </div>
+      <div class="mt-8 text-center"><button id="tutupSyaratModal" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-xl transition-colors duration-200"> Tutup </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
         // Data santri dengan ayah, kelas, dan nomor WA
-        const dataSantri = {
+         const dataSantri = {
             'Abdullah Bin Fachrial Mar\'ie': { ayah: 'Fachrial Riza', kelas: 'Kuttab Awal 1A', nomorWA: '6285933140455' },
             'Abraham Syuja Kramadibrata': { ayah: 'Tri Widi Ganuwiara', kelas: 'Kuttab Awal 1D', nomorWA: '6289658570950' },
             'Afiqa Maryam': { ayah: 'Adi Saeful Hamdi', kelas: 'Kuttab Awal 2F', nomorWA: '6289512297977' },
@@ -285,10 +188,10 @@
             'Arfa Abidah Qurrota\'Aini': { ayah: 'Anto', kelas: 'Kuttab Awal 1D', nomorWA: '6283838351002' },
             'Arrayah Arham Atqiya': { ayah: 'Aufa Arham Khaeruddin', kelas: 'Kuttab Awal 1E', nomorWA: '628112226991' },
             'Asiyah Ahsanu Amala': { ayah: 'Andi Sulistyo Nugroho', kelas: 'Kuttab Awal 1C', nomorWA: '628126057093' },
+	'Asiyah Qonita Shabirah': { ayah: 'Iyan Rahadiyan', kelas: 'Kuttab Awal 3B', nomorWA: '6285772220079' },
             'Asiyah Shabrina Candradimuka': { ayah: 'Wahid Lalang Buana', kelas: 'Kuttab Awal 1C', nomorWA: '6281214241860' },
-		    'Asiyah Qonita Shabirah': { ayah: 'Iyan Rahadiyan', kelas: 'Kuttab Awal 3B', nomorWA: '6285772220079' },
             'Ayana Sofya Shabira': { ayah: 'Ujang Yandri', kelas: 'Kuttab Awal 1B', nomorWA: '6281214642698' },
- 		    'Azzam Alfarizi Arrafiq': { ayah: 'Jefry Triagus Purnomohadi', kelas: 'Kuttab Awal 1C', nomorWA: '6282146255741' },
+	'Azzam Alfarizi Arrafiq': { ayah: 'Jefry Triagus Purnomohadi', kelas: 'Kuttab Awal 1C', nomorWA: '6282146255741' },
             'Azzam Athazaky Al Hafidz': { ayah: 'Sopian Gandhi', kelas: 'Kuttab Awal 1D', nomorWA: '62895377012575' },
             'Elfath Nuswantara': { ayah: 'Ahmad Kemaludin', kelas: 'Kuttab Awal 1A', nomorWA: '6285222311523' },
             'Emir Syafiq Elmultazim': { ayah: 'Sahlan Muhammad Faqih', kelas: 'Kuttab Awal 2F', nomorWA: '6285759078714' },
@@ -300,13 +203,13 @@
             'Hafiz Alkhairi Purnama': { ayah: 'Ridwan Purnama', kelas: 'Kuttab Awal 1B', nomorWA: '6281394588400' },
             'Hafizh Zayn Al Kahfi': { ayah: 'Henrik', kelas: 'Kuttab Awal 2F', nomorWA: '6287766770112' },
             'Hamizan Afkari Ar-Rayyan': { ayah: 'Gema Akbaruhzian', kelas: 'Kuttab Awal 1C', nomorWA: '6287738842280' },
-		    'Hamzah Al Qassam Nurmagomedov': { ayah: 'Ahmad Afif Nadzir', kelas: 'Kuttab Awal 2F', nomorWA: '' },
             'Hamzah Yusuf Riksa': { ayah: 'Yosep Wijaya Riksa', kelas: 'Kuttab Awal 1B', nomorWA: '6285241289686' },
+	'Hamzah Al Qassam Nurmagomedov': { ayah: 'Ahmad Afif Nadzir', kelas: 'Kuttab Awal 2F', nomorWA: '0' },
             'Hana Ainunnisa Zaini': { ayah: 'Mohammad Zaini Dahlan', kelas: 'Kuttab Awal 1D', nomorWA: '6281220881988' },
             'Hanna Ayra Nourazmina': { ayah: 'Adan Rahman Sarsono', kelas: 'Kuttab Awal 1A', nomorWA: '6281322686832' },
             'Hayya Atqia Tasnim': { ayah: 'Muhayat', kelas: 'Kuttab Awal 1B', nomorWA: '6281320747174' },
             'Hilya Mafaza Eidelweis': { ayah: 'E Gunawan', kelas: 'Kuttab Awal 2F', nomorWA: '6281214460560' },
-		    'Hisyam Jaisyur Rahman': { ayah: 'M. Ikhwan Ul-Haq', kelas: 'Kuttab Awal 1A', nomorWA: '' },
+	'Hisyam Jaisyur Rahman': { ayah: 'M. Ikhwan Ul-Haq', kelas: 'Kuttab Awal 1A', nomorWA: '0' },
             'Hudzaifah Rijalul Haq': { ayah: 'Faizal Firmansyah', kelas: 'Kuttab Awal 1E', nomorWA: '628112051810' },
             'Iltizam Irsyadul Haq': { ayah: 'Mochammad Ridwan', kelas: 'Kuttab Awal 1E', nomorWA: '6282217055231' },
             'Isaac Abdul Mateen': { ayah: 'Irvan Amirulloh', kelas: 'Kuttab Awal 1E', nomorWA: '6281320198331' },
@@ -317,7 +220,7 @@
             'Maryam Adiba Suherman': { ayah: 'Herman Bambang Suherman', kelas: 'Kuttab Awal 1D', nomorWA: '6282127181013' },
             'Maryam Ahsanul Karimah': { ayah: 'Dinan Andiwijayakusuma', kelas: 'Kuttab Awal 2C', nomorWA: '6282216618559' },
             'Misya Hauna Al-Fayyadh': { ayah: 'Ujang Sopian', kelas: 'Kuttab Awal 1B', nomorWA: '6281809136363' },
-	        'Muhammad Alfatih Arsyad': { ayah: 'Alvin Ali Efendi', kelas: 'Kuttab Awal 2F', nomorWA: '62881022403207' },
+	    'Muhammad Alfatih Arsyad': { ayah: 'Alvin Ali Efendi', kelas: 'Kuttab Awal 2F', nomorWA: '62881022403207' },
             'Muhammad Athazaky Sulur': { ayah: 'Acep Rahman Surur', kelas: 'Kuttab Awal 2F', nomorWA: '6281573753763' },
             'Muhammad Hisyam Abdillah Nugraha': { ayah: 'Mochammad Hilvan Nugraha', kelas: 'Kuttab Awal 1C', nomorWA: '6287774078428' },
             'Muhammad Khobab Aly Atsaqil': { ayah: 'Nurdin Hayat', kelas: 'Kuttab Awal 1E', nomorWA: '6281324865415' },
@@ -327,7 +230,7 @@
             'Mujaddid Argi Mufassir Al-Furqan': { ayah: 'Yogi Cahya Nugraha', kelas: 'Kuttab Awal 1B', nomorWA: '6282218181016' },
             'Mushlih Abbad Afandi': { ayah: 'Mashuri Afandi', kelas: 'Kuttab Awal 1B', nomorWA: '628113340899' },
             'Nadheera Rayna Zahirah': { ayah: 'Muhammad Dawud', kelas: 'Kuttab Awal 1B', nomorWA: '6285316045401' },
-            'Nailah Aya Sofya': { ayah: 'Muslimin Amin', kelas: 'Kuttab Awal 1A', nomorWA: '62881023771630' },
+             'Nailah Aya Sofya': { ayah: 'Muslimin Amin', kelas: 'Kuttab Awal 1A', nomorWA: '62881023771630' },
             'Omar Al Farouq': { ayah: 'Ahmad Ardan', kelas: 'Kuttab Awal 1D', nomorWA: '6285669162029' },
             'Ranu Askar Firdaus': { ayah: 'Fajar Firdaus', kelas: 'Kuttab Awal 1E', nomorWA: '6282314221858' },
             'Rayyan Khair Rabbani': { ayah: 'Robi Afrizan Saputra', kelas: 'Kuttab Awal 1B', nomorWA: '6289603684472' },
@@ -344,7 +247,7 @@
             'Wafa Sofiya Hibatillah': { ayah: 'Nurdin Hidayat', kelas: 'Kuttab Awal 1A', nomorWA: '6285320758651' },
             'Yusuf Abdullah Shabir': { ayah: 'Iyan Rahadiyan', kelas: 'Kuttab Awal 2F', nomorWA: '6285772220079' },
             'Zafina Aliya Hakim': { ayah: 'Nasrul Hakim', kelas: 'Kuttab Awal 1C', nomorWA: '6281322332919' },
-        };
+            };
 
         // Elements
         const form = document.getElementById('cateringForm');
@@ -568,6 +471,7 @@
             params.append('entry.1159157947', data.alergi === 'ya' ? 'Ya' : 'Tidak');
             params.append('entry.287757135', data.jenisAlergi || '');
             params.append('entry.1840165850', data.jumlahHari || '1');
+            params.append('entry.2092362409', data.metodePembayaran === 'transfer' ? 'Transfer Bank' : 'QRIS');
             
             // Calculate total for Google Form
             const jumlahHari = parseInt(data.jumlahHari || 1);
@@ -615,6 +519,10 @@
             // Hide dropdown
             santriDropdown.classList.add('hidden');
             
+            // Hide payment info sections
+            transferInfo.classList.add('hidden');
+            qrisInfo.classList.add('hidden');
+            
             // Update total
             updateTotal();
             
@@ -629,6 +537,23 @@
             });
         }
 
+        // Handle payment method selection
+        const metodePembayaranRadios = document.querySelectorAll('input[name="metodePembayaran"]');
+        const transferInfo = document.getElementById('transferInfo');
+        const qrisInfo = document.getElementById('qrisInfo');
+
+        metodePembayaranRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'transfer') {
+                    transferInfo.classList.remove('hidden');
+                    qrisInfo.classList.add('hidden');
+                } else if (this.value === 'qris') {
+                    qrisInfo.classList.remove('hidden');
+                    transferInfo.classList.add('hidden');
+                }
+            });
+        });
+
         // Handle "Isi Kembali Formulir" button
         document.getElementById('isiKembaliBtn').addEventListener('click', function() {
             resetForm();
@@ -637,10 +562,5 @@
         // Initialize total
         updateTotal();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98e51d84360cbd94',t:'MTc2MDQyNDM0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9914eb0a54ff62b7',t:'MTc2MDkyNTU5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
